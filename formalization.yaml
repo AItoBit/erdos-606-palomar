@@ -1,0 +1,67 @@
+version: "v0.4"
+project:
+  name: "Erdos 606: eventual line-count classification"
+  description: >-
+    Incomplete preparation of the Erdos-Salamon eventual classification of
+    the numbers of distinct lines determined by finite real planar point sets.
+    The statement and explicit numeric classification are present; the
+    principal theorem proof remains unresolved.
+  authors: []
+  license: "Apache-2.0"
+  responsible_maintainers: []
+classification:
+  arxiv: ["math.CO", "math.MG"]
+  msc2020: ["52C10", "05B25"]
+sources:
+  - title: "The solution to a problem of Grunbaum"
+    authors: ["Peter Salamon", "Paul Erdos"]
+    id: "doi:10.4153/CMB-1988-020-2"
+    type: "article"
+    location: "https://doi.org/10.4153/CMB-1988-020-2"
+    relationship: "formalizes"
+    note: "Eventual classification from pp. 132-134; p. 137 leaves small n unresolved."
+  - title: "Erdos Problem 606"
+    type: "web page"
+    location: "https://www.erdosproblems.com/606"
+    relationship: "background"
+related_formalizations:
+  - id: "https://github.com/AItoBit/formal-conjectures/tree/d638c177251b741533dc4f7a22e1eed2bb0a831b"
+    relationship: "adapts"
+    note: "Statement provenance; this preparation removes FC-specific imports and attributes."
+  - id: "https://github.com/plby/lean-proofs/tree/8822f7ddef30fadbd92e1c6ab4ed897af356af5e"
+    relationship: "other"
+    note: "Known external proof candidate. No source reused; permission and verification pending."
+status:
+  scope: >-
+    Only the eventual classification statement is prepared. The Solution
+    theorem is unproved. Human author and maintainer fields remain unconfirmed.
+    No Palomar submission or passing Comparator result exists. The axiom list
+    records the known blocking dependency, not a measured complete axiom report.
+  sorry_count: 1
+  sorry_in_definitions: 0
+  axioms: ["sorryAx"]
+automation:
+  methods:
+    - method: "agent"
+      models: ["GPT-6"]
+      framework: "Codex"
+      tool_setup: "Lean, Mathlib, gh, source inspection and independent agent statement audit"
+  notes: "AI prepared the statement and submission scaffold. No complete proof or human review."
+fidelity:
+  divergences: >-
+    Classification is restricted to sufficiently large n, as in the cited
+    solution. Its five overlap cases are expressed as a union of bands and
+    a final interval. Geometric equivalence is not yet proved in this project.
+review:
+  status: "statement audited by a separate AI agent; proof pending"
+  reviewers: []
+  notes: "The original FC statement received a source audit. No Palomar editorial review exists."
+alignment:
+  namespace: "Erdos606"
+  statements:
+    - source: "Salamon-Erdos 1988, pp. 132-134"
+      lean: "Erdos606.erdos_606"
+      module: "Solution"
+      status: "unproved"
+      note: "The explicit classification is stated, but the proof is a placeholder."
+acknowledgements: "Formal Conjectures, Lean, Mathlib, Codex and the independent AI statement auditor."

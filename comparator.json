@@ -1,0 +1,12 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": ["Erdos606.erdos_606"],
+  "definition_names": [
+    "Erdos606.possibleLineCounts",
+    "Erdos606.lineCountBand",
+    "Erdos606.classifiedLineCounts"
+  ],
+  "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "enable_nanoda": true
+}

@@ -1,0 +1,35 @@
+name: Build Draft Statement and Solution
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          build: true
+  proof-readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Require completion before treating the draft as submission-ready
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          import re
+          solution = pathlib.Path("Solution.lean").read_text()
+          if re.search(r"^\s+sorry\s*$", solution, re.MULTILINE):
+              raise SystemExit("Solution.lean still has an unresolved proof. Palomar intake is blocked.")
+          print("No standalone sorry placeholder found. Run full Palomar preflight to verify proof dependencies.")
+          PY
